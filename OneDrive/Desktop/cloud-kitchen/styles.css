@@ -1,0 +1,16 @@
+body {
+  font-family: Arial;
+  text-align: center;
+  background-color: #f8f3e6;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.item img {
+  width: 200px;
+  border-radius: 15px;
+}
