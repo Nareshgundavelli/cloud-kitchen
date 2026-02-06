@@ -2,18 +2,19 @@ pipeline {
     agent any
 
     stages {
-
         stage('Deploy Cloud Kitchen UI') {
             steps {
                 sh '''
                 ssh -o StrictHostKeyChecking=no ubuntu@54.144.103.219 "
-                    sudo rm -f /var/www/html/*
+                    sudo rm -rf /var/www/html/*
                 "
 
-                scp -o StrictHostKeyChecking=no index.html ubuntu@54.144.103.219:/tmp/index.html
+                scp -o StrictHostKeyChecking=no -r index.html style.css images ubuntu@54.144.103.219:/tmp/
 
                 ssh -o StrictHostKeyChecking=no ubuntu@54.144.103.219 "
-                    sudo mv /tmp/index.html /var/www/html/index.html
+                    sudo mv /tmp/index.html /var/www/html/
+                    sudo mv /tmp/style.css /var/www/html/
+                    sudo mv /tmp/images /var/www/html/
                     sudo systemctl reload nginx
                 "
                 '''
