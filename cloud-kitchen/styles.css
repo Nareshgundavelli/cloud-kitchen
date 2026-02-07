@@ -1,16 +1,36 @@
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   text-align: center;
   background-color: #f8f3e6;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 30px;
 }
 
 .menu {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.item {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .item img {
   width: 200px;
-  border-radius: 15px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.item h3 {
+  margin-top: 10px;
 }
