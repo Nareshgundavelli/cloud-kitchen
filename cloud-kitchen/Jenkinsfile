@@ -17,10 +17,15 @@ pipeline {
         stage('Deploy Website') {
             steps {
                 sh '''
+                echo "Moving to project directory..."
+                cd cloud-kitchen
+
                 sudo rm -rf /var/www/html/*
                 sudo cp index.html style.css /var/www/html/
+
                 sudo chown -R www-data:www-data /var/www/html
                 sudo chmod -R 755 /var/www/html
+
                 sudo systemctl restart nginx
                 '''
             }
