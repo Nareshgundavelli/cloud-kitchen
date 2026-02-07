@@ -38,7 +38,7 @@ pipeline {
             IP=$(curl -s http://checkip.amazonaws.com || hostname -I | awk '{print $1}')
             echo "====================================="
             echo " Website deployed successfully 🎉"
-            echo " Access URL: http://$IP"
+            echo " Access URL: http://3.80.81.18"
             echo "====================================="
             '''
         }
