@@ -1,18 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        WEB_DIR = "/var/www/html"
-    }
-
     stages {
-
-        stage('Checkout Code') {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/Nareshgundavelli/cloud-kitchen.git'
-            }
-        }
 
         stage('Install Nginx') {
             steps {
@@ -29,7 +18,10 @@ pipeline {
             steps {
                 sh '''
                 sudo rm -rf /var/www/html/*
-                sudo cp -r * /var/www/html/
+                sudo cp index.html style.css /var/www/html/
+                sudo chown -R www-data:www-data /var/www/html
+                sudo chmod -R 755 /var/www/html
+                sudo systemctl restart nginx
                 '''
             }
         }
@@ -41,7 +33,7 @@ pipeline {
             IP=$(curl -s http://checkip.amazonaws.com || hostname -I | awk '{print $1}')
             echo "====================================="
             echo " Website deployed successfully 🎉"
-            echo " Access URL: http://3.80.81.18/"
+            echo " Access URL: http://$IP"
             echo "====================================="
             '''
         }
